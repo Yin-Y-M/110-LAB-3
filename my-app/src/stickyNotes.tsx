@@ -96,12 +96,16 @@ export const StickyNotes = () => {
                                 >
                                     {favoriteNotes.includes(note.title) ? '❤' : '♡'}
                                 </button>
-                                <button onClick={() => removeNote(note.id)}>x</button>
+                                <button
+                                    data-testid={`delete-note-${note.id}`} 
+                                    onClick={() => removeNote(note.id)}>x
+                                </button>
                             </div>
                             <h2 
                                 contentEditable 
                                 suppressContentEditableWarning={true}
                                 style={{ color: '#000' }}
+                                data-testid={`note-title-${note.id}`}
                             > 
                                 {note.title} 
                             </h2>

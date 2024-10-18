@@ -34,20 +34,17 @@ describe("Create StickyNote", () => {
 
     //Exercise 2.6.1 starts here
 
-    test("renders all created notes", () => {
+    test("displays all notes from the dummyNotesList", () => {
         render(<StickyNotes />);
-      
-        const createNoteTitleInput = screen.getByPlaceholderText("Note Title");
-        const createNoteContentTextarea = screen.getByPlaceholderText("Note Content");
-        const createNoteButton = screen.getByText("Create Note");
-      
-        fireEvent.change(createNoteTitleInput, { target: { value: "New Note" } });
-        fireEvent.change(createNoteContentTextarea, { target: { value: "New Content" } });
-        fireEvent.click(createNoteButton);
-      
-        expect(screen.getByText("New Note")).toBeInTheDocument();
-        expect(screen.getByText("New Content")).toBeInTheDocument();
-      });
+    
+        dummyNotesList.forEach((note) => {
+            const noteTitle = screen.getByText(note.title);
+            const noteContent = screen.getByText(note.content);
+    
+            expect(noteTitle).toBeInTheDocument();
+            expect(noteContent).toBeInTheDocument();
+        });
+    });
       
 
     test("updates a note's content", () => {

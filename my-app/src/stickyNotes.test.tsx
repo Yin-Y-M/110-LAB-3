@@ -34,7 +34,7 @@ describe("Create StickyNote", () => {
 
     //Exercise 2.6.1 starts here
 
-    test("displays all notes from the dummyNotesList", () => {
+    test("displays all notes", () => {
         render(<StickyNotes />);
     
         dummyNotesList.forEach((note) => {
@@ -47,7 +47,7 @@ describe("Create StickyNote", () => {
     });
       
 
-    test("updates a note's content", () => {
+    test("updates note content", () => {
         render(<StickyNotes />);
       
         const createNoteTitleInput = screen.getByPlaceholderText("Note Title");
@@ -59,10 +59,13 @@ describe("Create StickyNote", () => {
         fireEvent.click(createNoteButton);
       
         const noteTitle = screen.getByTestId("note-title-1");
+        const noteContent = screen.getByTestId("note-content-1");
       
-        fireEvent.input(noteTitle, { target: { innerHTML: "Updated Note" } });
+        fireEvent.input(noteTitle, { target: { innerHTML: "New Note" } });
+        fireEvent.input(noteContent, { target: { innerHTML: "New Content" } });
       
-        expect(noteTitle.innerHTML).toBe("Updated Note");
+        expect(noteTitle.innerHTML).toBe("New Note");
+        expect(noteContent.innerHTML).toBe("New Content");
     });
       
     test("deletes a note", () => {

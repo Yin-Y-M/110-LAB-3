@@ -113,6 +113,7 @@ export const StickyNotes = () => {
                                 contentEditable 
                                 suppressContentEditableWarning={true}
                                 style={{ color: '#000' }}
+                                data-testid={`note-content-${note.id}`}
                             >  
                                 {note.content} 
                             </p>
